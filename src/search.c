@@ -87,16 +87,15 @@ int search_file(const char *pattern, const char *filename) {
     }
 
     // check each line for the pattern
-    printf("%s: ", filename);
     while (fgets(buff, sizeof buff, file) != NULL) {
         reti = regexec(&regex, buff, 0, NULL, 0); 
         
         if (!reti) {
+            printf("%s: ", filename);
             printf("%s", buff);
             matched = 1;
         } 
     }
-    printf("\n");
     
     regfree(&regex);
     fclose(file);
